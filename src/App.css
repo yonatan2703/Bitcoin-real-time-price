@@ -1,3 +1,12 @@
 .App {
-  text-align: center;
+	text-align: center;
+	min-width: 100vw;
+	min-height: 100vh;
+	background-color: #fffafa;
+	color: #333333;
+}
+
+.bitcoin-img {
+	margin-right: 10px;
+	height: 80%;
 }
