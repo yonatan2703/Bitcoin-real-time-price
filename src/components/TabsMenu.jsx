@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/react";
 import OverviewTab from "./OverviewTab";
@@ -15,7 +15,7 @@ const TabsMenu = ({ tabIndex, setTabIndex }) => {
 	const [btcPriceHour, setBtcPriceHour] = useState(null);
 	const [btcPriceWeek, setBtcPriceWeek] = useState(null);
 
-	let navigate = useNavigate();
+	const navigate = useNavigate();
 
 	const handleTabsChange = (index) => {
 		setTabIndex(index);
@@ -24,7 +24,7 @@ const TabsMenu = ({ tabIndex, setTabIndex }) => {
 	useEffect(() => {
 		Promise.all([
 			bitcoinPriceByMinute(149),
-			bitcoinPriceByHour(29), 
+			bitcoinPriceByHour(29),
 			bitcoinPriceByWeek(29),
 		]).then((response) => {
 			setBtcPriceMin(response[0]?.data?.data.slice(-30));
@@ -35,10 +35,6 @@ const TabsMenu = ({ tabIndex, setTabIndex }) => {
 			setBtcPriceWeek(response[2]?.data?.data);
 		});
 	}, []);
-
-	useEffect(() => {
-		console.log(btcPriceMin);
-	}, [btcPriceMin]);
 
 	return (
 		<Tabs

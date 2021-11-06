@@ -31,7 +31,11 @@ const useWebSocket = (subscribeMessage, unSubscribeMessage, webSocketURL) => {
 		ws.send(JSON.stringify(unSubscribeMessage));
 	};
 
-	return [ws, message, unSubsribe];
+	const subscribe = () => {
+		ws.send(JSON.stringify(subscribeMessage));
+	};
+
+	return [ws, message, subscribe, unSubsribe];
 };
 
 export default useWebSocket;

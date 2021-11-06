@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 import { ChakraProvider, Box } from "@chakra-ui/react";
@@ -13,7 +12,7 @@ import Header from "./components/Header.jsx";
 import TabsMenu from "./components/TabsMenu";
 
 function App() {
-	const [ws, message, unSubscribe] = useWebSocket(
+	const [ws, message, subscribe, unSubscribe] = useWebSocket(
 		subscribeMessage,
 		unSubscribeMessage,
 		webSocketURL
@@ -21,8 +20,8 @@ function App() {
 
 	const [tabIndex, setTabIndex] = useState(0);
 
-	let navigate = useNavigate();
-	let location = useLocation();
+	const navigate = useNavigate();
+	const location = useLocation();
 
 	useEffect(() => {
 		if (location?.pathname === "/history") setTabIndex(1);
