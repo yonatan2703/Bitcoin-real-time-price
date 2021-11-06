@@ -24,7 +24,6 @@ const useWebSocket = (subscribeMessage, unSubscribeMessage, webSocketURL) => {
 		ws.onmessage = (e) => {
 			const msgData = JSON.parse(e.data);
 			setMessage(msgData["cc-btc-usd-cccagg"]);
-			console.log(msgData["cc-btc-usd-cccagg"]);
 		};
 	}, [ws]);
 
